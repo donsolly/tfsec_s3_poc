@@ -4,7 +4,7 @@ on:
     branches:
       - master
   pull_request:
-
+  
 jobs:
   tfsec:
     name: 'Terraform security check'
