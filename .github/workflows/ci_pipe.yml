@@ -38,10 +38,10 @@ jobs:
         run: terraform validate
 
       - name: 'Terraform Plan'
-        run: terraform plan -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+        run: terraform plan -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}"
 
       - name: 'Terraform Apply'
-        run: terraform apply -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+        run: terraform apply -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}"
 
       - name: 'Terraform destroy'
-        run: terraform destroy -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+        run: terraform destroy -auto-approve -var="access_key=${{ secrets.ACCESS_KEY }}" -var="secret_key=${{ secrets.SECRET_KEY }}"
