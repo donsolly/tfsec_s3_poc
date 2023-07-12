@@ -1,8 +1,8 @@
 # AWS Provider Configuration
 provider "aws" {
   region     = "us-west-2"
-  access_key = var.access_key
-  secret_key = var.secret_key
+  access_key = secrets.AWS_ACCESS_KEY_ID
+  secret_key = secrets.AWS_SECRET_ACCESS_KEY
 }
 
 # Retrieve the identity of the account
