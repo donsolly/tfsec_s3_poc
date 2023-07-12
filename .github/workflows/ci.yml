@@ -13,7 +13,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-      - name: 'Terraform security scan'
+      - name: 'Terraform security scan '
         uses: aquasecurity/tfsec-action@v1.0.0
 
   terraform:
