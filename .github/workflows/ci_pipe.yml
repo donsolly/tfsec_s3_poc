@@ -5,6 +5,7 @@ on:
       - master
   pull_request:
   workflow_dispatch:
+
 jobs:
   tfsec:
     name: 'Terraform security check'
@@ -21,9 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: s3_bucket_creation
     needs: tfsec
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v2
@@ -40,10 +38,10 @@ jobs:
         run: terraform validate
 
       - name: 'Terraform Plan'
-        run: terraform plan
+        run: terraform plan -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
 
       - name: 'Terraform Apply'
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
 
       - name: 'Terraform destroy'
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
